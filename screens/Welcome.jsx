@@ -1,51 +1,68 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Button,Stack } from "native-base";
-
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  StatusBar,
+} from "react-native";
+import { Button, Box, HStack,  Text} from "native-base";
 
 const WelcomeScreen = ({ navigation }) => {
-
-
   return (
-    <View style={styles.container}>
-      <Text>Welcome screen!</Text>
-
-      <Stack mb="2.5" mt="1.5" direction={{
-        base: "row",
-        md: "row"
-      }} space={2} mx={{
-        base: "auto",
-        md: "0"
-      }}>
-        <Button
-          size="sm"
-          variant="subtle"
-          onPress={() => navigation.navigate("Sign In")}
-        >
-          Sign in
-        </Button>
-        <Button
-          size="sm"
-          variant="subtle"
-          onPress={() => navigation.navigate("Sign Up")}
-        >
-          Sign up
-        </Button>
-        </Stack>
-
+    <ImageBackground
+      source={require("../assets/images/Background.png")}
+      style={styles.imageBackground}
+    >
+      <StatusBar style="auto" />
+      <View
+        style={{
+          width: "100%",
+          height: "100%",
+          alignItems: "center",
+          // backgroundColor: "green",
+        }}
+      >
+        <View style={styles.container}>
+          <Text italic fontSize="lg" style={{color:"white"}}> Welcome screen </Text>
+          <Box>
+            <HStack
+              space={2}
+              alignItems={{
+                base: "center",
+                md: "flex-start",
+              }}
+            >
+              <Button
+                size="md"
+                variant="subtle"
+                onPress={() => navigation.navigate("Sign In")}
+              >
+                Sign in
+              </Button>
+              <Button
+                size="md"
+                variant="subtle"
+                onPress={() => navigation.navigate("Sign Up")}
+              >
+                Sign up
+              </Button>
+            </HStack>
+          </Box>
+        </View>
       </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  imageBackground: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    paddingTop: 20,
-    backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
   },
-
 });
 
 export default WelcomeScreen;

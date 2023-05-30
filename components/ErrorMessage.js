@@ -1,20 +1,21 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
+import {
+  Text,
+} from "native-base";
 
 const ErrorMessage = ({ error, visible }) => {
   if (!error || !visible) {
     return null;
   }
 
-  return <Text style={styles.errorText}>⚠️ {error}</Text>;
+  return <Text bold italic color="danger.400" style={styles.errorText}>⚠️ {error}</Text>;
 };
 
 const styles = StyleSheet.create({
   errorText: {
-    color: "#fdca40",
-    fontSize: 20,
-    marginBottom: 10,
-    fontWeight: "600",
+    fontSize: 14,
+    marginBottom: 2,
   },
 });
 

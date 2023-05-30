@@ -15,15 +15,16 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { auth, db } from "../config";
 import { doc, updateDoc,arrayUnion } from "firebase/firestore";
-const user = auth.currentUser
+const user = auth.currentUser;
 const PostList = ({ posts }) => {
-  console.log("her=>",posts)
   const [post,setPost]=useState(posts)
+  
   const RenderPostItem = (data) => {
-    console.log(data)
+    
+    //console.log(data)
      let item = data.data.data;
      let itemId=data.data.docId;
-     console.log("iteamid",itemId)
+     //console.log("iteamid",itemId)
     return (
       <Box alignItems="center" marginTop="5px">
         <Box
@@ -58,7 +59,7 @@ const PostList = ({ posts }) => {
                 </Avatar>
               </Center>
               <Center>
-                <Text>item.user.name</Text>
+                <Text>{item.users}</Text>
               </Center>
             </HStack>
           </Box>
@@ -66,40 +67,21 @@ const PostList = ({ posts }) => {
             <AspectRatio w="100%" ratio={16 / 9}>
               <Image
                 source={{
-                  uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                  uri: item.uri||"https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
                 }}
                 alt="image"
               />
             </AspectRatio>
           </Box>
           <Stack p="4" space={3}>
-            <Stack space={2}>
-              <Heading size="md" ml="-1">
-                {item.content.header}
-              </Heading>
-              <Text
-                fontSize="xs"
-                _light={{
-                  color: "violet.500",
-                }}
-                _dark={{
-                  color: "violet.400",
-                }}
-                fontWeight="500"
-                ml="-0.5"
-                mt="-1"
-              >
-                {item.content.subHeder}
-              </Text>
-            </Stack>
-            <Text fontWeight="400">item.content.body</Text>
+            <Text fontWeight="400">{item.content.subHeder}</Text>
             <HStack space={2} alignContent="center">
               <HStack space={2}>
                 <Center>
                   <Icon as={Ionicons} name="heart-sharp" color="red.500" />
                 </Center>
                 <Center>
-                  <Text color="coolGray.600" onPress={()=>likes(itemId)}>item.liks</Text>
+                  <Text color="coolGray.600" onPress={()=>likes(itemId)}>{item.liks?.length()}</Text>
                 </Center>
               </HStack>
               <HStack space={2}>
@@ -107,7 +89,7 @@ const PostList = ({ posts }) => {
                   <Icon as={MaterialIcons} name="comment" />
                 </Center>
                 <Center>
-                  <Text color="coolGray.600">item.comment</Text>
+                  <Text color="coolGray.600">{item.comment?.length()}</Text>
                 </Center>
               </HStack>
             </HStack>

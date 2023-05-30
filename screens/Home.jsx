@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HomePost from "./HomePost";
 import SettingsScreen from "./SettingsScreen";
+import { Box } from "native-base";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,9 +30,10 @@ export default function HomeScreen() {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <Tab.Screen name="Homes"  component={HomePost} />
+      <Tab.Screen name="Homes" options={{ headerShown: false }} component={HomePost} />
       <Tab.Screen name="Settings"  component={SettingsScreen} />
     </Tab.Navigator>
+
   );
 }
 
