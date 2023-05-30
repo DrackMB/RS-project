@@ -58,7 +58,7 @@ const CustomDrawer = (props) => {
               marginBottom: 5,
             }}
           >
-            {user.displayName}
+            {user?.displayName}
           </Text>
         </ImageBackground>
         <View style={{ flex: 1, backgroundColor: "#fff", paddingTop: 10 }}>

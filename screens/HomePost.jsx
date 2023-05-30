@@ -35,7 +35,7 @@ export default function HomePost({ navigation }) {
   const HomePostsList = ({ navigation, route }) => {
     //console.log("myData===>",route.params.data)
     return (
-      <View style={{ backgroundColor: "#253334" }}>
+      <View >
         <Header user={auth.currentUser} navigation={navigation} />
         <Box>
           <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
@@ -46,7 +46,7 @@ export default function HomePost({ navigation }) {
               </Modal.Body>
             </Modal.Content>
           </Modal>
-          <HStack space="4" justifyContent="flex-end">
+          <HStack  justifyContent="flex-end">
             <Button
               onPress={() => {
                 setModalVisible(!modalVisible);
